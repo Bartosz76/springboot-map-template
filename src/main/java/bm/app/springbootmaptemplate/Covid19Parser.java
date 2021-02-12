@@ -8,11 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 @Service
@@ -30,14 +26,14 @@ public class Covid19Parser {
         StringReader stringReader = new StringReader(values);
         CSVParser parse = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(stringReader);
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDateTime now = LocalDateTime.now();
-        String currentDateAsString = dtf.format(now).toString();
+//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        LocalDateTime now = LocalDateTime.now();
+//        String currentDateAsString = dtf.format(now).toString();
 
         for (CSVRecord strings : parse) {
             double lat = Double.parseDouble(strings.get("Lat"));
             double lon = Double.parseDouble(strings.get("Long"));
-            String text = strings.get("2/11/21");
+            String text = strings.get("3/5/20");
             points.add(new Point(lat, lon, text));
         }
         return points;
